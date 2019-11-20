@@ -1,5 +1,7 @@
 package io.turntabl.springbootdemo.controller;
 
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import io.turntabl.springbootdemo.model.Number;
 import io.turntabl.springbootdemo.model.Maths;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,13 +11,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+@Api
 @RestController
 public class MathsController {
-
     @Autowired
     private Maths mathFunctions;
 
 
+    @ApiOperation("Subtract")
     @RequestMapping("/subtract")
     public Number Subtract(@RequestParam(value = "int1", defaultValue = "1") Integer int1,
                            @RequestParam(value = "int2", defaultValue = "2") Integer int2){
@@ -30,6 +33,8 @@ public class MathsController {
         number.setValue(result);
         return number;
     }
+
+    @ApiOperation("Add")
     @RequestMapping("/add")
     public Number Add(@RequestParam(value = "int1", defaultValue = "1") Integer int1,
                            @RequestParam(value = "int2", defaultValue = "2") Integer int2){
